@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sysarch UML co-evolution (EMF DiffMerge bridge)
+Bundle-SymbolicName: com.example.sysarch.coevolution;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Example
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: com.example.sysarch.coevolution
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.uml2.uml;visibility:=reexport,
+ org.eclipse.uml2.uml.resources,
+ com.example.sysarch;visibility:=reexport,
+ org.eclipse.emf.diffmerge;visibility:=reexport,
+ org.eclipse.emf.diffmerge.generic;visibility:=reexport,
+ org.eclipse.emf.diffmerge.bridge;visibility:=reexport,
+ org.eclipse.emf.diffmerge.bridge.mapping;visibility:=reexport,
+ org.eclipse.emf.diffmerge.bridge.incremental;visibility:=reexport,
+ org.eclipse.emf.diffmerge.bridge.traces.gen
+Import-Package: org.apache.log4j
+Export-Package: com.example.sysarch.coevolution,
+ com.example.sysarch.coevolution.bridge,
+ com.example.sysarch.coevolution.policies

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sysarch co-evolution tests
+Bundle-SymbolicName: com.example.sysarch.coevolution.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Example
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: com.example.sysarch.coevolution.tests
+Require-Bundle: org.junit;bundle-version="4.13.0",
+ com.example.sysarch.coevolution,
+ org.eclipse.uml2.uml.resources

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension point="org.eclipse.ui.commands">
+      <category id="com.example.sysarch.coevolution.ui.category" name="Co-évolution UML"/>
+      <command id="com.example.sysarch.coevolution.ui.import"
+            categoryId="com.example.sysarch.coevolution.ui.category"
+            name="Importer un fichier UML..."
+            description="Importe chaque modèle d'un fichier UML dans un projet (ou synchronise le projet existant)"/>
+      <command id="com.example.sysarch.coevolution.ui.synchronize"
+            categoryId="com.example.sysarch.coevolution.ui.category"
+            name="Synchroniser avec l'UML"
+            description="Relit le fichier UML source et met à jour les projets sélectionnés (tous les projets importés si aucune sélection)"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers">
+      <handler commandId="com.example.sysarch.coevolution.ui.import"
+            class="com.example.sysarch.coevolution.ui.ImportUmlHandler"/>
+      <handler commandId="com.example.sysarch.coevolution.ui.synchronize"
+            class="com.example.sysarch.coevolution.ui.SynchronizeHandler"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu id="com.example.sysarch.coevolution.ui.menu" label="Co-évolution UML">
+            <command commandId="com.example.sysarch.coevolution.ui.import" style="push"/>
+            <command commandId="com.example.sysarch.coevolution.ui.synchronize" style="push"/>
+         </menu>
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar id="com.example.sysarch.coevolution.ui.toolbar" label="Co-évolution UML">
+            <command commandId="com.example.sysarch.coevolution.ui.import" style="push"
+                  label="Importer UML" tooltip="Importer un fichier UML (plusieurs modèles = plusieurs projets)"/>
+            <command commandId="com.example.sysarch.coevolution.ui.synchronize" style="push"
+                  label="Synchroniser UML" tooltip="Synchroniser les projets avec leur modèle UML source"/>
+         </toolbar>
+      </menuContribution>
+      <menuContribution locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command commandId="com.example.sysarch.coevolution.ui.synchronize" style="push">
+            <visibleWhen checkEnabled="false">
+               <with variable="activeMenuSelection">
+                  <iterate ifEmpty="false" operator="and">
+                     <adapt type="org.eclipse.core.resources.IProject"/>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.importWizards">
+      <category id="com.example.sysarch.coevolution.ui.importCategory" name="Co-évolution UML"/>
+      <wizard id="com.example.sysarch.coevolution.ui.importWizard"
+            category="com.example.sysarch.coevolution.ui.importCategory"
+            class="com.example.sysarch.coevolution.ui.ImportUmlWizard"
+            name="Fichier UML (un projet par modèle)">
+         <description>Importe les modèles d'un fichier UML en projets Sysarch, ou les resynchronise.</description>
+      </wizard>
+   </extension>
+
+</plugin>

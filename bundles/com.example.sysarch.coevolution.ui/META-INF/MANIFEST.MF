@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sysarch UML co-evolution UI
+Bundle-SymbolicName: com.example.sysarch.coevolution.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Example
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: com.example.sysarch.coevolution.ui
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.console,
+ org.eclipse.jface,
+ org.eclipse.emf.edit,
+ com.example.sysarch.coevolution,
+ org.eclipse.emf.diffmerge.ui,
+ org.eclipse.emf.diffmerge.bridge.interactive
+Export-Package: com.example.sysarch.coevolution.ui

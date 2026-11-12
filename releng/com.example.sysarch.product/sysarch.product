@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+<product name="Sysarch" uid="com.example.sysarch.product" id="com.example.sysarch.rcp.product"
+         application="com.example.sysarch.rcp.application" version="1.0.0.qualifier" type="features"
+         includeLaunchers="true" autoIncludeRequirements="true">
+
+   <configIni use="default"/>
+
+   <launcherArgs>
+      <programArgs>-data @user.home/sysarch-workspace -clearPersistedState</programArgs>
+      <vmArgs>-Dlog4j.defaultInitOverride=true -Xmx1024m</vmArgs>
+   </launcherArgs>
+
+   <launcher name="sysarch">
+      <win useIco="false"/>
+   </launcher>
+
+   <features>
+      <feature id="com.example.sysarch.feature"/>
+      <feature id="org.eclipse.rcp"/>
+      <feature id="org.eclipse.e4.rcp"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2"/>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0"/>
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2"/>
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2"/>
+      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1"/>
+   </configurations>
+
+</product>

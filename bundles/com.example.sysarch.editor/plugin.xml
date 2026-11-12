@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated sysarch -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.example.sysarch.presentation.SysarchModelWizardID"
+            name="%_UI_SysarchModelWizard_label"
+            class="com.example.sysarch.presentation.SysarchModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SysarchModelFile.gif">
+         <description>%_UI_SysarchModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated sysarch -->
+      <editor
+            id="com.example.sysarch.presentation.SysarchEditorID"
+            name="%_UI_SysarchEditor_label"
+            icon="icons/full/obj16/SysarchModelFile.gif"
+            extensions="sysarch"
+            class="com.example.sysarch.presentation.SysarchEditor"
+            contributorClass="com.example.sysarch.presentation.SysarchActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

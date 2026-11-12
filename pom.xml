@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example.sysarch</groupId>
+  <artifactId>com.example.sysarch.parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Sysarch - UML co-evolution prototype (EMF DiffMerge)</name>
+
+  <properties>
+    <tycho.version>4.0.10</tycho.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <modules>
+    <module>releng/com.example.sysarch.target</module>
+    <module>bundles/com.example.sysarch</module>
+    <module>bundles/com.example.sysarch.edit</module>
+    <module>bundles/com.example.sysarch.editor</module>
+    <module>bundles/com.example.sysarch.coevolution</module>
+    <module>bundles/com.example.sysarch.coevolution.ui</module>
+    <module>bundles/com.example.sysarch.rcp</module>
+    <module>tests/com.example.sysarch.coevolution.tests</module>
+    <module>features/com.example.sysarch.feature</module>
+    <module>releng/com.example.sysarch.product</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <target>
+            <artifact>
+              <groupId>com.example.sysarch</groupId>
+              <artifactId>com.example.sysarch.target</artifactId>
+              <version>1.0.0-SNAPSHOT</version>
+            </artifact>
+          </target>
+          <environments>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-compiler-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <useProjectSettings>false</useProjectSettings>
+          <compilerArgs>
+            <arg>-warn:-raw,unchecked,deprecation,unusedImport</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

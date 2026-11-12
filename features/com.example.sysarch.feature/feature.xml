@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.example.sysarch.feature"
+      label="Sysarch - UML co-evolution prototype"
+      version="1.0.0.qualifier"
+      provider-name="Example">
+
+   <description>
+      Sysarch metamodel and editor, UML import into several projects and iterative
+      three-way co-evolution based on EMF DiffMerge 0.14.1 (co-evolution bridge).
+   </description>
+
+   <!-- Application bundles -->
+   <plugin id="com.example.sysarch" version="0.0.0" unpack="false"/>
+   <plugin id="com.example.sysarch.edit" version="0.0.0" unpack="false"/>
+   <plugin id="com.example.sysarch.editor" version="0.0.0" unpack="false"/>
+   <plugin id="com.example.sysarch.coevolution" version="0.0.0" unpack="false"/>
+   <plugin id="com.example.sysarch.coevolution.ui" version="0.0.0" unpack="false"/>
+   <plugin id="com.example.sysarch.rcp" version="0.0.0" unpack="false"/>
+
+   <!-- EMF DiffMerge 0.14.1 + co-evolution bridge -->
+   <plugin id="org.eclipse.emf.diffmerge" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.generic" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.structures" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.ui" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.bridge" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.bridge.mapping" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.bridge.incremental" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.bridge.interactive" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.emf.diffmerge.bridge.traces.gen" version="0.0.0" unpack="false"/>
+   <plugin id="org.apache.log4j" version="0.0.0" unpack="false"/>
+
+   <!-- Platform pieces that nothing requires explicitly -->
+   <plugin id="org.eclipse.ui.navigator.resources" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.uml2.uml.resources" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.equinox.event" version="0.0.0" unpack="false"/>
+
+</feature>

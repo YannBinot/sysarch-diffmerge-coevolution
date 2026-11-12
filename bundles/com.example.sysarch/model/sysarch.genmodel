@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.example.sysarch/src-gen" editDirectory="/com.example.sysarch.edit/src-gen"
+    editorDirectory="/com.example.sysarch.editor/src-gen" modelPluginID="com.example.sysarch" editPluginID="com.example.sysarch.edit"
+    editorPluginID="com.example.sysarch.editor" modelName="Sysarch" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="11.0" copyrightFields="false" operationReflection="true" importerID="org.eclipse.emf.importer.ecore"
+    bundleManifest="true" updateClasspath="false" richClientPlatform="false">
+  <foreignModel>sysarch.ecore</foreignModel>
+  <genPackages prefix="Sysarch" basePackage="com.example" disposableProviderFactory="true" ecorePackage="sysarch.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sysarch.ecore#//ComponentStatus">
+      <genEnumLiterals ecoreEnumLiteral="sysarch.ecore#//ComponentStatus/DRAFT"/>
+      <genEnumLiterals ecoreEnumLiteral="sysarch.ecore#//ComponentStatus/REVIEWED"/>
+      <genEnumLiterals ecoreEnumLiteral="sysarch.ecore#//ComponentStatus/VALIDATED"/>
+    </genEnums>
+    <genClasses ecoreClass="sysarch.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//NamedElement/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//NamedElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//NamedElement/description"/>
+    </genClasses>
+    <genClasses ecoreClass="sysarch.ecore#//SystemModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//SystemModel/sourceModelName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sysarch.ecore#//SystemModel/packages"/>
+    </genClasses>
+    <genClasses ecoreClass="sysarch.ecore#//Package">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sysarch.ecore#//Package/subPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sysarch.ecore#//Package/types"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sysarch.ecore#//Type"/>
+    <genClasses ecoreClass="sysarch.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//Component/abstract"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sysarch.ecore#//Component/superComponents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sysarch.ecore#//Component/providedInterfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sysarch.ecore#//Component/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sysarch.ecore#//Component/operations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//Component/status"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//Component/notes"/>
+    </genClasses>
+    <genClasses ecoreClass="sysarch.ecore#//Interface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sysarch.ecore#//Interface/operations"/>
+    </genClasses>
+    <genClasses ecoreClass="sysarch.ecore#//DataType"/>
+    <genClasses ecoreClass="sysarch.ecore#//Enumeration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//Enumeration/literals"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sysarch.ecore#//TypedElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sysarch.ecore#//TypedElement/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//TypedElement/typeName"/>
+    </genClasses>
+    <genClasses ecoreClass="sysarch.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//Attribute/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sysarch.ecore#//Attribute/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="sysarch.ecore#//Operation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sysarch.ecore#//Operation/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="sysarch.ecore#//Parameter"/>
+  </genPackages>
+</genmodel:GenModel>

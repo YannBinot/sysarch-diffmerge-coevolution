@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension id="application" point="org.eclipse.core.runtime.applications">
+      <application>
+         <run class="com.example.sysarch.rcp.Application"/>
+      </application>
+   </extension>
+
+   <extension id="product" point="org.eclipse.core.runtime.products">
+      <product application="com.example.sysarch.rcp.application" name="Sysarch">
+         <property name="appName" value="Sysarch"/>
+         <property name="aboutText"
+               value="Sysarch - prototype de co-évolution UML / projets EMF&#10;&#10;Import d'un fichier UML multi-modèles en plusieurs projets et synchronisation itérative 3-way (EMF DiffMerge 0.14.1, bridge incrémental)."/>
+      </product>
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectives">
+      <perspective id="com.example.sysarch.rcp.perspective"
+            name="Sysarch"
+            class="com.example.sysarch.rcp.Perspective"/>
+   </extension>
+
+</plugin>

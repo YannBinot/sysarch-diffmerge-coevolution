@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sample external UML file holding several models (2 root models + 1 nested model).
+     Version 1: initial import. -->
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="m_vehicle" name="VehicleSystem">
+    <ownedComment xmi:id="m_vehicle_c" body="Logical architecture of the vehicle"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="p_powertrain" name="powertrain">
+      <packagedElement xmi:type="uml:Class" xmi:id="c_engine" name="Engine">
+        <ownedComment xmi:id="c_engine_c" body="Combustion engine"/>
+        <interfaceRealization xmi:id="c_engine_ir" client="c_engine" supplier="i_startable" contract="i_startable"/>
+        <ownedAttribute xmi:id="a_engine_power" name="power">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="a_engine_fuel" name="fuel" type="e_fuel"/>
+        <ownedOperation xmi:id="o_engine_start" name="start">
+          <ownedParameter xmi:id="o_engine_start_r" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="o_engine_setRpm" name="setRpm">
+          <ownedParameter xmi:id="o_engine_setRpm_p" name="rpm">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="c_electric" name="ElectricEngine">
+        <generalization xmi:id="c_electric_g" general="c_engine"/>
+        <ownedAttribute xmi:id="a_electric_voltage" name="voltage">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="i_startable" name="IStartable">
+        <ownedOperation xmi:id="o_startable_start" name="start"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="e_fuel" name="FuelType">
+        <ownedLiteral xmi:id="e_fuel_petrol" name="PETROL"/>
+        <ownedLiteral xmi:id="e_fuel_diesel" name="DIESEL"/>
+        <ownedLiteral xmi:id="e_fuel_electric" name="ELECTRIC"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="p_chassis" name="chassis">
+      <packagedElement xmi:type="uml:Class" xmi:id="c_wheel" name="Wheel">
+        <ownedAttribute xmi:id="a_wheel_diameter" name="diameter">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="c_chassis" name="Chassis">
+        <ownedAttribute xmi:id="a_chassis_wheels" name="wheels" type="c_wheel">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a_chassis_wheels_l" value="4"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a_chassis_wheels_u" value="4"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="c_vehicle" name="Vehicle">
+      <ownedAttribute xmi:id="a_vehicle_engine" name="engine" type="c_engine"/>
+      <ownedAttribute xmi:id="a_vehicle_chassis" name="chassis" type="c_chassis"/>
+    </packagedElement>
+    <!-- Nested model: becomes its own project -->
+    <packagedElement xmi:type="uml:Model" xmi:id="m_telemetry" name="Telemetry">
+      <packagedElement xmi:type="uml:Package" xmi:id="p_sensors" name="sensors">
+        <packagedElement xmi:type="uml:Class" xmi:id="c_sensor" name="Sensor">
+          <ownedAttribute xmi:id="a_sensor_rate" name="sampleRate">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="c_logger" name="DataLogger">
+          <ownedAttribute xmi:id="a_logger_sensors" name="sensors" type="c_sensor">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a_logger_sensors_u" value="*"/>
+          </ownedAttribute>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+  <uml:Model xmi:id="m_charging" name="ChargingInfrastructure">
+    <packagedElement xmi:type="uml:Package" xmi:id="p_stations" name="stations">
+      <packagedElement xmi:type="uml:DataType" xmi:id="d_voltage" name="Voltage"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="c_station" name="ChargingStation">
+        <ownedAttribute xmi:id="a_station_maxPower" name="maxPower">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="a_station_voltage" name="voltage" type="d_voltage"/>
+        <ownedAttribute xmi:id="a_station_connectors" name="connectors" type="c_connector">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a_station_connectors_u" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="c_connector" name="Connector">
+        <ownedAttribute xmi:id="a_connector_kind" name="kind">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>
