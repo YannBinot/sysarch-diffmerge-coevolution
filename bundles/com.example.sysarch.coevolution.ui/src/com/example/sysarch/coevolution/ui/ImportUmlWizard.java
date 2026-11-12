@@ -64,6 +64,12 @@ public class ImportUmlWizard extends Wizard implements IImportWizard {
   }
 
   private ModelsPage page;
+  private String initialFile;
+
+  /** Pre-fills the UML file field (used by the documentation screenshots). */
+  public void setInitialFile(String path) {
+    this.initialFile = path;
+  }
 
   public ImportUmlWizard() {
     setWindowTitle("Import UML - un projet par modèle (EMF DiffMerge)");
@@ -161,6 +167,9 @@ public class ImportUmlWizard extends Wizard implements IImportWizard {
       viewer.setContentProvider(ArrayContentProvider.getInstance());
       viewer.addCheckStateListener(e -> updateCompletion());
       setControl(c);
+      if (initialFile != null) {
+        fileText.setText(initialFile);
+      }
     }
 
     private void column(String title, int width, java.util.function.Function<Row, String> text) {

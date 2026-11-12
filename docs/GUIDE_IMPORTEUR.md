@@ -8,6 +8,8 @@ Ce guide explique comment reproduire le comportement du prototype Sysarch pour *
   - les changements faits dans les projets sont conservés ;
   - les conflits sont présentés à l'utilisateur.
 
+Voir aussi : la [référence détaillée des classes DiffMerge](API_DIFFMERGE.md) et le [guide utilisateur illustré](GUIDE_UTILISATEUR.md).
+
 Le code de référence se trouve dans `bundles/com.example.sysarch.coevolution` (cœur, sans UI) et dans `bundles/com.example.sysarch.coevolution.ui` (UI).
 
 ---

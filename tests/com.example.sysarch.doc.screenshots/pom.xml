@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Regenerates docs/images/*.png by driving the real application.
+     Run: mvn verify -Pscreenshots   (opens windows on the desktop for ~1 minute) -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.example.sysarch</groupId>
+    <artifactId>com.example.sysarch.parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>com.example.sysarch.doc.screenshots</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>eclipse-test-plugin</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-surefire-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <useUIHarness>true</useUIHarness>
+          <useUIThread>true</useUIThread>
+          <includes><include>**/DocumentationScreenshots.class</include></includes>
+          <product>com.example.sysarch.rcp.product</product>
+          <application>com.example.sysarch.rcp.application</application>
+          <argLine>-Dlog4j.defaultInitOverride=true -Djava.awt.headless=false</argLine>
+          <redirectTestOutputToFile>false</redirectTestOutputToFile>
+          <systemProperties>
+            <samples.dir>${project.basedir}/../../samples</samples.dir>
+            <images.dir>${project.basedir}/../../docs/images</images.dir>
+          </systemProperties>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

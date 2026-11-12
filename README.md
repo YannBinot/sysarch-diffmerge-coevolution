@@ -12,7 +12,12 @@ Technologie utilisée : **EMF DiffMerge 0.14.1**, à partir de deux sites :
 - `emf-diffmerge-site` : comparaison et fusion ;
 - `edm-coevolution-site` : *bridge* de co-évolution (mapping, incrémental, interactif, traces).
 
-Guide développeur (comment écrire un importeur avec le même comportement) : [docs/GUIDE_IMPORTEUR.md](docs/GUIDE_IMPORTEUR.md)
+Documentation :
+- [Guide utilisateur illustré](docs/GUIDE_UTILISATEUR.md) : les fonctionnalités en captures d'écran
+- [Guide développeur](docs/GUIDE_IMPORTEUR.md) : écrire un importeur avec le même comportement
+- [Référence API EMF DiffMerge](docs/API_DIFFMERGE.md) : les classes à utiliser et ce qu'elles font
+
+![Résolution d'un conflit dans DiffMerge](docs/images/04-diffmerge-vehiclesystem.png)
 
 ## Principe
 
@@ -43,6 +48,7 @@ Le bridge incrémental natif de DiffMerge (`EMFIncrementalBridge`) compare en **
 | `bundles/com.example.sysarch.coevolution.ui` | Assistant d'import, commande « Synchroniser », gestion des conflits, console de rapport |
 | `bundles/com.example.sysarch.rcp` | Application RCP : advisors, perspective, produit |
 | `tests/com.example.sysarch.coevolution.tests` | Scénario itératif automatisé, 5 tests |
+| `tests/com.example.sysarch.doc.screenshots` | Régénère les captures de `docs/images` en pilotant l'application : `mvn verify -Pscreenshots` |
 | `features/…`, `releng/…product`, `releng/…target` | Feature, produit Windows et plateforme cible : Eclipse 2024-12, DiffMerge 0.14.1, UML2, log4j (Orbit) |
 | `samples/vehicle-v1.uml`, `vehicle-v2.uml` | Un fichier avec 3 modèles (2 racines et 1 imbriqué), avant et après l'évolution externe |
 | `tools/emf-codegen` | Régénération du code EMF hors Eclipse : `mvn -f tools/emf-codegen/pom.xml compile exec:java` |

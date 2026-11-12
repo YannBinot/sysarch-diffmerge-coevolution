@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.diffmerge.bridge.interactive.UpdateDialog;
 import org.eclipse.emf.diffmerge.diffdata.EComparison;
 import org.eclipse.emf.diffmerge.generic.api.Role;
+import org.eclipse.emf.diffmerge.ui.viewers.AbstractComparisonViewer;
 import org.eclipse.emf.diffmerge.ui.viewers.EMFDiffNode;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -58,6 +59,11 @@ public class UiConflictHandler implements IConflictHandler {
   }
 
   private int askStrategy(Shell shell, List<Change> conflicts) {
+    return createStrategyDialog(shell, conflicts).open();
+  }
+
+  /** Dialog asking how to resolve the conflicts of the project (exposed for documentation screenshots). */
+  public MessageDialog createStrategyDialog(Shell shell, List<Change> conflicts) {
     String list = conflicts.stream().limit(12)
         .map(c -> " • " + c.getDescription().replace("[CONFLIT] ", ""))
         .collect(Collectors.joining("\n"));
@@ -70,22 +76,48 @@ public class UiConflictHandler implements IConflictHandler {
     MessageDialog dialog = new MessageDialog(shell, "Conflits de co-évolution - " + projectName, null, message,
         MessageDialog.WARNING, CHOICE_DIFFMERGE,
         "Résoudre dans DiffMerge...", "Garder le projet", "Prendre l'UML", "Annuler la synchronisation");
-    return dialog.open();
+    return dialog;
   }
 
   /** Same configuration as DiffMerge's EMFInteractiveBridge: UML result on the left, project on the right. */
   private int openDiffMergeDialog(Shell shell, EComparison comparison) {
+    return createDiffMergeDialog(shell, comparison).open();
+  }
+
+  /** EMF DiffMerge comparison dialog of the co-evolution bridge (exposed for documentation screenshots). */
+  public CoevolutionUpdateDialog createDiffMergeDialog(Shell shell, EComparison comparison) {
     EMFDiffNode node = new EMFDiffNode(comparison, null, true, false);
     node.setReferenceRole(Role.TARGET);
     node.setDrivingRole(Role.TARGET);
     node.setLeftRole(Role.REFERENCE);
-    UpdateDialog dialog = new UpdateDialog(shell,
-        "Co-évolution UML -> " + projectName + " : fusionner vers la droite ce qui doit venir de l'UML", node) {
-      @Override
-      protected Button createOpenEditorButton(Composite parent) {
-        return null; // the result is applied by the synchronization itself, not in a compare editor
-      }
-    };
-    return dialog.open();
+    return new CoevolutionUpdateDialog(shell,
+        "Co-évolution UML -> " + projectName + " : fusionner vers la droite ce qui doit venir de l'UML", node);
+  }
+
+  /**
+   * DiffMerge's bridge update dialog without the "open in compare editor" button
+   * (the result is applied by the synchronization itself) and with access to its viewer.
+   */
+  public static class CoevolutionUpdateDialog extends UpdateDialog {
+    private AbstractComparisonViewer viewer;
+
+    public CoevolutionUpdateDialog(Shell shell, String title, EMFDiffNode input) {
+      super(shell, title, input);
+    }
+
+    @Override
+    protected Button createOpenEditorButton(Composite parent) {
+      return null;
+    }
+
+    @Override
+    protected AbstractComparisonViewer createComparisonViewer(Composite parent) {
+      viewer = super.createComparisonViewer(parent);
+      return viewer;
+    }
+
+    public AbstractComparisonViewer getComparisonViewer() {
+      return viewer;
+    }
   }
 }

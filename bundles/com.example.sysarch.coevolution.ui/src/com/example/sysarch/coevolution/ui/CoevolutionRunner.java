@@ -104,9 +104,7 @@ public final class CoevolutionRunner {
     for (String e : errors) {
       text.append("ERREUR ").append(e).append('\n');
     }
-    MessageConsoleStream out = console().newMessageStream();
-    out.println("===== " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " - " + title + " =====");
-    out.println(text.toString());
+    log(title, text.toString());
     if (!errors.isEmpty()) {
       ErrorDialog.openError(shell, title, "Erreurs pendant la co-évolution (voir console)",
           new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, Activator.ID,
@@ -115,6 +113,13 @@ public final class CoevolutionRunner {
     if (!reports.isEmpty()) {
       new ReportDialog(shell, title, text.toString()).open();
     }
+  }
+
+  /** Appends a report to the "Co-évolution UML" console. */
+  public static void log(String title, String text) {
+    MessageConsoleStream out = console().newMessageStream();
+    out.println("===== " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " - " + title + " =====");
+    out.println(text);
   }
 
   private static MessageConsole console() {

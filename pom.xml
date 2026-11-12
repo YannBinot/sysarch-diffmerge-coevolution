@@ -27,6 +27,16 @@
     <module>releng/com.example.sysarch.product</module>
   </modules>
 
+  <profiles>
+    <!-- Regenerates the documentation screenshots (docs/images) by driving the application -->
+    <profile>
+      <id>screenshots</id>
+      <modules>
+        <module>tests/com.example.sysarch.doc.screenshots</module>
+      </modules>
+    </profile>
+  </profiles>
+
   <build>
     <plugins>
       <plugin>
