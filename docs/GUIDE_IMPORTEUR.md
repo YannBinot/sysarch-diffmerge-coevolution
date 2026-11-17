@@ -178,6 +178,8 @@ Fichier de référence : `SysarchIncrementalBridge.java`, qui hérite de `EMFInc
 
 ### 4.4 L'orchestration : `CoevolutionService.synchronize(project, model, handler, monitor)`
 
+Cette orchestration remplace le `BridgeJob` de DiffMerge, qui ne gère ni le 3-way ni la baseline. Voir [Choix de conception : pourquoi pas `BridgeJob`](CHOIX_BRIDGEJOB.md).
+
 ```
 1. Charger : <P>.sysarch (TARGET), trace.bridgetraces, baseline.sysarch + baseline.bridgetraces (ANCESTOR)
    (premier import : ressources vides, pas de trace, pas d'ancêtre)

@@ -16,6 +16,7 @@ Documentation :
 - [Guide utilisateur illustré](docs/GUIDE_UTILISATEUR.md) : les fonctionnalités en captures d'écran
 - [Guide développeur](docs/GUIDE_IMPORTEUR.md) : écrire un importeur avec le même comportement
 - [Référence API EMF DiffMerge](docs/API_DIFFMERGE.md) : les classes à utiliser et ce qu'elles font
+- [Choix de conception : pourquoi pas `BridgeJob`](docs/CHOIX_BRIDGEJOB.md) : ce qui le remplace et pourquoi
 
 ![Résolution d'un conflit dans DiffMerge](docs/images/04-diffmerge-vehiclesystem.png)
 
